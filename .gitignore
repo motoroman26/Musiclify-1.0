@@ -1,0 +1,19 @@
+# bin/
+# obj/
+# [Dd]ebug/
+# [Rr]elease/
+
+# .vs/
+# .vscode/
+# *.user
+# *.suo
+# *.jfm
+
+# music/
+# covers/
+
+# *.log
+# .DS_Store
+
+# *-shm
+# *-wal

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Додати альбом - Musiclify</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="stylesheet" href="../css/add-album.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🎵 Додати новий альбом</h1>
+        <p>Заповніть інформацію про альбом та завантажте музичні файли</p>
+      </div>
+
+      <div id="albumFormContainer">
+        <form id="albumForm" class="album-form" enctype="multipart/form-data">
+          <div class="form-section">
+            <h3>Основна інформація</h3>
+            <div class="form-group">
+              <label for="title">Назва альбому *</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Наприклад: Toxicity"
+                required
+              />
+              <small class="hint"
+                >Будь ласка, вкажіть точну назву альбому</small
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="artist">Ім'я артиста *</label>
+              <input
+                type="text"
+                id="artist"
+                name="artistName"
+                placeholder="Наприклад: System of a Down"
+                required
+              />
+              <small class="hint"
+                >Це ім'я буде використано в URL:
+                musiclify/[артист]/[альбом]</small
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="year">Рік випуску *</label>
+              <input
+                type="number"
+                id="year"
+                name="year"
+                min="1900"
+                max="2100"
+                placeholder="Наприклад: 2001"
+                required
+              />
+              <small class="hint">Рік випуску альбому</small>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Обкладинка альбому</h3>
+            <div class="form-group">
+              <label for="cover">Завантажити обкладинку</label>
+              <div class="file-upload-area" id="coverUploadArea">
+                <input
+                  type="file"
+                  id="cover"
+                  name="cover"
+                  accept="image/*"
+                  hidden
+                />
+                <div class="upload-placeholder">
+                  <div class="upload-icon">🖼️</div>
+                  <p>
+                    Перетягніть обкладинку сюди або
+                    <span class="browse-link">виберіть файл</span>
+                  </p>
+                  <small>Підтримуються JPG, PNG, WebP (макс. 10MB)</small>
+                </div>
+                <div class="file-preview" id="coverPreview"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Музичні треки</h3>
+            <div class="form-group">
+              <label for="tracks">Завантажити треки *</label>
+              <div class="file-upload-area" id="tracksUploadArea">
+                <input
+                  type="file"
+                  id="tracks"
+                  name="tracks"
+                  accept="audio/*"
+                  multiple
+                  required
+                  hidden
+                />
+                <div class="upload-placeholder">
+                  <div class="upload-icon">🎵</div>
+                  <p>
+                    Перетягніть MP3 файли сюди або
+                    <span class="browse-link">виберіть файли</span>
+                  </p>
+                  <small
+                    >Підтримуються MP3, FLAC, WAV (макс. 50MB на файл)</small
+                  >
+                </div>
+                <div id="trackList" class="track-list"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="upload-progress" id="uploadProgress">
+            <div class="progress-text">
+              <span id="progressStatus">Підготовка до завантаження...</span>
+              <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-details" id="progressDetails"></div>
+          </div>
+
+          <div class="url-preview" id="urlPreview">
+            <h4>🔄 URL альбому після завантаження:</h4>
+            <code id="albumUrl">musiclify/[артист]/[альбом]</code>
+            <small>Це посилання буде доступно після успішного додавання</small>
+          </div>
+
+          <div class="form-actions">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="window.location.href='index.html'"
+            >
+              ↩️ Повернутися
+            </button>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              🚀 Завантажити альбом
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">✅</div>
+        <h2>Альбом успішно додано!</h2>
+        <p id="successDetails">
+          Ваш альбом був успішно завантажений та опублікований.
+        </p>
+
+        <div class="url-preview">
+          <h4>🌐 Ваш альбом доступний за адресою:</h4>
+          <code id="finalAlbumUrl">Завантаження...</code>
+          <small>Збережіть це посилання для подальшого доступу</small>
+        </div>
+
+        <div class="success-actions">
+          <a href="#" class="btn btn-primary" id="viewAlbumBtn"
+            >🎵 Перейти до альбому</a
+          >
+          <a href="add-album.html" class="btn btn-secondary"
+            >➕ Додати ще один альбом</a
+          >
+          <a href="index.html" class="btn btn-secondary">🏠 На головну</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/add-album.js"></script>
+  </body>
+</html>

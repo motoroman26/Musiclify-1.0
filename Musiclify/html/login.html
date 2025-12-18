@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Увійти — Musiclify</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Musiclify</h1>
+      <p class="subtitle">Увійдіть, щоб продовжити</p>
+
+      <form class="login-form">
+        <div class="form-group">
+          <label for="email">Електронна пошта</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="example@gmail.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button type="submit" class="login-btn">Увійти</button>
+
+        <div class="options">
+          <a href="forgot-password.html" class="forgot-link">Забули пароль?</a>
+        </div>
+      </form>
+
+      <div class="register">
+        <p>Немає акаунта? <a href="register.html">Зареєструватися</a></p>
+      </div>
+    </div>
+    <script src="../js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musiclify</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/album-grid.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="logo">Musiclify</div>
+        <nav class="main-nav">
+          <ul>
+            <li>
+              <a
+                href="#"
+                class="active"
+                onclick="contentLoader.loadContent('home')"
+                ><span class="icon">🏠</span> Головна</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="contentLoader.loadContent('search')"
+                ><span class="icon">🔎</span> Пошук</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="library">
+          <h3>Бібліотека</h3>
+          <ul>
+            <li>
+              <a href="#" onclick="contentLoader.loadContent('artists')"
+                ><span class="icon">🧑‍🎤</span> Виконавці</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                onclick="contentLoader.loadContent('albums')"
+                class="albums-link"
+                ><span class="icon">💿</span> Альбоми</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="devices-user">
+          <div class="user-profile guest">
+            <div class="user-profile-container">
+              <div class="avatar">Г</div>
+              <span class="username">Гість</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="content-sections" id="contentContainer"></div>
+      </main>
+    </div>
+
+    <audio id="audioPlayer" src=""></audio>
+
+    <footer class="player-bar" style="display: none">
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-line">
+          <div class="progress-played" id="progressPlayed"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="playback-buttons">
+          <button class="control-button" id="prevTrack">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="32"
+              height="32"
+            >
+              <path
+                fill="currentColor"
+                d="M4 4a1 1 0 00-1 1v14a1 1 0 102 0V5a1 1 0 00-1-1Zm14.955.23L6 12.003l12.955 7.772A1.35 1.35 0 0021 18.617V5.387a1.35 1.35 0 00-2.045-1.157Z"
+              />
+            </svg>
+          </button>
+
+          <button id="playPause" class="control-button">
+            <svg
+              id="playIcon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="46"
+              height="46"
+            >
+              <path
+                fill="currentColor"
+                d="M5 4.623V19.38a1.5 1.5 0 002.26 1.29L22 12 7.26 3.33A1.5 1.5 0 005 4.623Z"
+              />
+            </svg>
+          </button>
+
+          <button class="control-button" id="nextTrack">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="32"
+              height="32"
+            >
+              <path
+                fill="currentColor"
+                d="M20 20a1 1 0 001-1V5a1 1 0 00-2 0v14a1 1 0 001 1Zm-14.955-.226L18 12 5.045 4.228A1.35 1.35 0 003 5.386v13.23a1.35 1.35 0 002.045 1.158Z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <span id="time" class="time">0:00 / 0:00</span>
+      </div>
+
+      <div class="track-info">
+        <img
+          src="/images/album-cover.jpg"
+          alt="cover"
+          class="track-cover"
+          id="trackCover"
+        />
+        <div class="track-meta">
+          <h4 id="trackTitle" class="track-title">Musiclify</h4>
+          <p id="trackSubtitle" class="track-subtitle">
+            Виберіть трек для відтворення
+          </p>
+        </div>
+      </div>
+
+      <div class="volume-settings">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          class="control-icon"
+          style="color: white"
+        >
+          <path
+            fill="currentColor"
+            d="M11.485 2.143 3.913 6.687A6 6 0 001 11.832v.338a6 6 0 002.913 5.144l7.572 4.543A1 1 0 0013 21V3a1.001 1.001 0 00-1.515-.857Zm6.88 2.079a1 1 0 00-.001 1.414 9 9 0 010 12.728 1 1 0 001.414 1.414 11 11 0 000-15.556 1 1 0 00-1.413 0ZM4.941 8.402l.001-.002L11 4.767v14.466l-6.058-3.635A4 4 0 013 12.168v-.337a4 4 0 011.941-3.429ZM15.535 7.05a1 1 0 000 1.415 5 5 0 010 7.07 1 1 0 001.415 1.415 6.999 6.999 0 000-9.9 1 1 0 00-1.415 0Z"
+          />
+        </svg>
+        <input id="volumeSlider" type="range" value="50" min="0" max="100" />
+      </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/content-loader.js"></script>
+  </body>
+</html>

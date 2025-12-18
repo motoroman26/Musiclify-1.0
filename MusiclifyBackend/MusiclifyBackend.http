@@ -1,0 +1,6 @@
+@MusiclifyBackend_HostAddress = http://localhost:5255
+
+GET {{MusiclifyBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
